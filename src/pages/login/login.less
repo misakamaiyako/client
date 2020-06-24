@@ -1,0 +1,67 @@
+.transitionBase{
+  transition: opacity 300ms ease-in-out 0ms;
+}
+.flexCenter{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.root{
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  position: relative;
+  .leftPart{
+    width: 33%;
+    height: 100%;
+    background: linear-gradient(153deg, rgb(23, 20, 74), rgb(12, 10, 40));
+    float: left;
+  }
+  .main{
+    margin-left: 33%;
+    height: 100%;
+    .flexCenter();
+  }
+	.defaultInfo{
+		height: 100%;
+		width: 332px;
+		position: relative;
+	}
+  .logoPart{
+    .flexCenter();
+		transition: opacity 300ms ease-in-out 0ms;
+		opacity: 0;
+		position: absolute;
+		top: calc(50% - 142px);
+		width: 100%;
+    .logo{
+      width: 52px;
+      height: 52px;
+      margin-bottom: 24px;
+      background: aliceblue;
+    }
+    h1{
+      font-size: 24px;
+      margin-bottom: 8px;
+    }
+    h2{
+      font-size: 16px;
+      color: rgb(102, 106, 114);
+    }
+  }
+	.email{
+		position: absolute;
+		width: 100%;
+		transition: opacity 300ms ease-in-out 0ms;
+		top: calc(50% + 30px);
+	}
+	.button{
+		perspective: 500px;
+		transform: rotateX(0);
+		transition: transform 2s cubic-bezier(0.17, 0.67, 1, 1);
+		width: 100%;
+		height: 36px;
+		margin-top: 12px
+	}
+}
