@@ -1,15 +1,14 @@
-import React, { MouseEventHandler } from 'react';
-import PropType from 'prop-types';
+import React, { CSSProperties, MouseEventHandler } from "react";
+import PropType from "prop-types";
 
-import ringButton from './ring-button.less';
+import CommonProps from "@/utils/commonProps";
+import ringButton from "./ring-button.less";
 
-interface Props {
-	type?: 'primary';
+interface Props extends CommonProps {
+	type?: "primary";
 	loading?: boolean;
 	onClick?: MouseEventHandler<HTMLButtonElement>;
 	disabled?: boolean;
-	style?: React.StyleHTMLAttributes<any>;
-	className?:React.ClassAttributes<any>
 }
 export default class RingButton extends React.Component<Props, Object> {
 	static propTypes = {
@@ -17,9 +16,10 @@ export default class RingButton extends React.Component<Props, Object> {
 		loading: PropType.bool,
 		onClick: PropType.func,
 		disabled: PropType.bool,
+		style: PropType.any,
 	};
 	static defaultProps = {
-		type: 'default',
+		type: "default",
 		loading: false,
 	};
 	render() {
@@ -28,22 +28,19 @@ export default class RingButton extends React.Component<Props, Object> {
 				className={[
 					ringButton.button,
 					this.props.className,
-					this.props.type === 'primary' ? ringButton.primary : null,
+					this.props.type === "primary" ? ringButton.primary : null,
 					this.props.loading ? ringButton.loaderAdded : null,
-				].join(' ')}
+				].join(" ")}
 				onClick={this.handleClick.bind(this)}
-				style={this.props.style}
-			>
-				{this.props.loading ? (
-					<div className={ringButton.loaderBackground} />
-				) : null}
+				style={this.props.style}>
+				{this.props.loading ? <div className={ringButton.loaderBackground} /> : null}
 				<span>{this.props.children}</span>
 			</button>
 		);
 	}
-	handleClick(event:React.MouseEvent<HTMLButtonElement, MouseEvent>):void{
-		if (this.props.loading===false&&this.props.onClick){
-			this.props.onClick(event)
+	handleClick(event: React.MouseEvent<HTMLButtonElement, MouseEvent>): void {
+		if (this.props.loading === false && this.props.onClick) {
+			this.props.onClick(event);
 		}
 	}
 }

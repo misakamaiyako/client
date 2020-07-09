@@ -1,2 +1,2 @@
-import RingButton from './ring-button';
-export default RingButton
+import RingButton from "./ring-button";
+export default RingButton;

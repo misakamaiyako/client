@@ -1,19 +1,19 @@
-import React, { ChangeEvent } from 'react';
-import PropType from 'prop-types';
+import React, { ChangeEvent } from "react";
+import PropType from "prop-types";
 
-import ringInput from './ring-input.less';
-interface Props {
+import ringInput from "./ring-input.less";
+import CommonProps from "@/utils/commonProps";
+
+interface Props extends CommonProps {
 	value?: number | string;
 	label?: string;
 	placeholder?: string;
 	verification?: {
 		type: string;
-		verification: (value: any, callback: () => void) => void;
+		verification: (value: any, callback: (Error?: Error) => void) => void;
 	}[];
-	type?: 'text' | 'password';
+	type?: string;
 	onChange?: (value: any) => void;
-	style?: React.StyleHTMLAttributes<any>;
-	className?:React.ClassAttributes<any>
 }
 interface State {
 	error: boolean;
@@ -28,29 +28,25 @@ export default class RingInput extends React.Component<Props, State> {
 		verification: PropType.array,
 		type: PropType.string,
 		onChange: PropType.func,
-		style: PropType.object,
+		style: PropType.any,
+		className: PropType.any,
 	};
 	static defaultProps = {
-		label: '',
-		placeholder: '',
-		type: 'text',
-		value: '',
+		label: "",
+		placeholder: "",
+		type: "text",
+		value: "",
 	};
 	state = {
 		error: false,
-		errorText: '',
+		errorText: "",
 		verifying: false,
 	};
 	render() {
 		return (
 			<div
-				className={[
-					ringInput.ringInputBox,
-					this.props.className,
-					this.state.error ? ringInput.error : null,
-				].join(' ')}
-				style={{width: 300,...this.props.style}}
-			>
+				className={[ringInput.ringInputBox, this.props.className, this.state.error ? ringInput.error : null].join(" ")}
+				style={{ width: 300, ...this.props.style }}>
 				<input
 					type={this.props.type}
 					value={this.props.value}
@@ -71,7 +67,7 @@ export default class RingInput extends React.Component<Props, State> {
 		const value = e.currentTarget.value;
 		this.props.onChange && this.props.onChange(value);
 		if (this.props.verification) {
-			const rule = this.props.verification.find(t => t.type === 'change');
+			const rule = this.props.verification.find(t => t.type === "change");
 			if (rule) {
 				this.verificationOne(this.props.value, rule.verification);
 			}
@@ -79,7 +75,7 @@ export default class RingInput extends React.Component<Props, State> {
 	}
 	blur() {
 		if (this.props.value && this.props.verification) {
-			const rule = this.props.verification.find(t => t.type === 'blur');
+			const rule = this.props.verification.find(t => t.type === "blur");
 			if (rule) {
 				this.verificationOne(this.props.value, rule.verification);
 			}
@@ -101,7 +97,7 @@ export default class RingInput extends React.Component<Props, State> {
 				} else {
 					this.setState({
 						error: false,
-						errorText: '',
+						errorText: "",
 						verifying: false,
 					});
 					resolve();
@@ -110,7 +106,7 @@ export default class RingInput extends React.Component<Props, State> {
 		});
 	}
 	verification(): Promise<void[]> {
-		this.setState({ error: false, errorText: '', verifying: true });
+		this.setState({ error: false, errorText: "", verifying: true });
 		let worker: Promise<void>[] = [];
 		this.props.verification?.forEach(t => {
 			worker.push(this.verificationOne(this.props.value, t.verification));

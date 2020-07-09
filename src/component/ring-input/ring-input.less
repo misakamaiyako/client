@@ -1,96 +1,95 @@
 .ringInputBox {
-  margin: 0 16px;
-  box-sizing: border-box;
-  padding-top: 16px;
-  min-height: 64px;
-  line-height: 18px;
-  font-size: 13px;
-  position: relative;
+	margin: 0 16px;
+	box-sizing: border-box;
+	padding-top: 16px;
+	min-height: 64px;
+	line-height: 18px;
+	font-size: 13px;
+	position: relative;
 
-  .input {
-    width: 100%;
-    min-height: 32px;
-    padding: 0;
-    border: none;
-    outline: none;
-    background: transparent;
-    font: inherit;
-    caret-color: #008eff;
-    &::placeholder {
-      color: transparent;
-    }
-    &:not(:placeholder-shown) {
-
-      ~ .label {
-        color: #737577;
-        transform: translateY(-20px) scale(0.92308);
-      }
-      ~ .focusUnderLine {
-        transform: scaleX(0);
-      }
-    }
-    &:focus {
-      &::placeholder {
-        color: #737577;
-      }
-      ~ .label {
-        color: #008eff;
-        transform: translateY(-20px) scale(0.92308);
-      }
-      ~ .focusUnderLine {
-        transform: scaleX(1);
-      }
-    }
-  }
-
-  .label {
-    position: absolute;
-    top: 23px;
-    left: 0;
-    transition: transform 0.15s ease-out, color 0.15s ease-out;
-    transform-origin: top left;
-    pointer-events: none;
-    color: #737577;
-  }
-
-  .underLine {
-    border-color: #b8d1e5;
-    height: 1px;
-    border-bottom-width: 1px;
-    border-bottom-style: solid;
-  }
-
-  .focusUnderLine {
-    margin-top: -1px;
-    background: #008eff;
-    width: 100%;
-    height: 2px;
-    transform: scaleX(0);
-    transform-origin: top left;
-  }
-
-  .errorUnderLine {
-    margin-top: -2px;
-    background: #db5860;
-    width: 100%;
-    height: 2px;
-    transform: scaleX(0);
-    transform-origin: top left;
-  }
-
-  .errorText {
-    box-sizing: border-box;
-    padding: 4px 0 8px;
-    transition: height 0.3s ease-out;
-    color: #c22731;
-    font-size: 12px;
-    line-height: 16px;
-  }
-	&.error{
-		.input~label{
-			color: #c22731!important;
+	.input {
+		width: 100%;
+		min-height: 32px;
+		padding: 0;
+		border: none;
+		outline: none;
+		background: transparent;
+		font: inherit;
+		caret-color: #008eff;
+		&::placeholder {
+			color: transparent;
 		}
-		.errorUnderLine{
+		&:not(:placeholder-shown) {
+			~ .label {
+				color: #737577;
+				transform: translateY(-20px) scale(0.92308);
+			}
+			~ .focusUnderLine {
+				transform: scaleX(0);
+			}
+		}
+		&:focus {
+			&::placeholder {
+				color: #737577;
+			}
+			~ .label {
+				color: #008eff;
+				transform: translateY(-20px) scale(0.92308);
+			}
+			~ .focusUnderLine {
+				transform: scaleX(1);
+			}
+		}
+	}
+
+	.label {
+		position: absolute;
+		top: 23px;
+		left: 0;
+		transition: transform 0.15s ease-out, color 0.15s ease-out;
+		transform-origin: top left;
+		pointer-events: none;
+		color: #737577;
+	}
+
+	.underLine {
+		border-color: #b8d1e5;
+		height: 1px;
+		border-bottom-width: 1px;
+		border-bottom-style: solid;
+	}
+
+	.focusUnderLine {
+		margin-top: -1px;
+		background: #008eff;
+		width: 100%;
+		height: 2px;
+		transform: scaleX(0);
+		transform-origin: top left;
+	}
+
+	.errorUnderLine {
+		margin-top: -2px;
+		background: #db5860;
+		width: 100%;
+		height: 2px;
+		transform: scaleX(0);
+		transform-origin: top left;
+	}
+
+	.errorText {
+		box-sizing: border-box;
+		padding: 4px 0 8px;
+		transition: height 0.3s ease-out;
+		color: #c22731;
+		font-size: 12px;
+		line-height: 16px;
+	}
+	&.error {
+		.input ~ label {
+			color: #c22731 !important;
+		}
+		.errorUnderLine {
 			transition: transform 0.15s ease-out;
 			transform: scaleX(1);
 		}

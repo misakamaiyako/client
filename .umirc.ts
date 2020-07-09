@@ -1,18 +1,18 @@
-import { defineConfig } from 'umi';
+import { defineConfig } from "umi";
 
 export default defineConfig({
 	nodeModulesTransform: {
-		type: 'none',
+		type: "none",
 	},
 	proxy: {
-		'/api': {
-			target: 'http://localhost:443/',
+		"/api": {
+			target: "http://localhost:443/",
 			changeOrigin: true,
-			pathRewrite: { '^/api': '' },
+			pathRewrite: { "^/api": "" },
 		},
 	},
 	routes: [
-		{ path: '/login', component: '@/pages/login' },
-		{ path: '/', component: '@/pages/index' },
+		{ path: "/login", component: "@/pages/login" },
+		{ path: "/", component: "@/pages/index" },
 	],
 });
